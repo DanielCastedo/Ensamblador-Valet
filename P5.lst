@@ -1,0 +1,58 @@
+     1                                  ;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     2                                  ;assemble and link with: 
+     3                                  ;assemble: -->> nasm -f win64 -o P5.o P5.asm -l P5.lst
+     4                                  ;link:	   -->> gcc -o P5 P5.o
+     5                                  ;run:      -->> P3
+     6                                  ;debugger: -->> x64dbg P5
+     7                                  ;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+     8                                  ;-----------------------------------------
+     9                                  
+    10                                  ;file: .asm (nombre programa)
+    11                                  ;registro: 
+    12                                  ;Apellidos y Nombre: 
+    13                                  
+    14                                  ;C:\mingw64\programas
+    15                                  ;path C:\mingw64\bin
+    16                                  
+    17                                  global main 
+    18                                  extern printf, scanf,gets,strlen
+    19                                  
+    20                                  
+    21                                  segment .data
+    22 00000000 0A696E74726F64757A-     msj1 db 10,"introduzca la contraseña: ",0
+    22 00000009 6361206C6120636F6E-
+    22 00000012 7472617365C3B1613A-
+    22 0000001B 2000               
+    23 0000001D 2573                    fmt db "%s"
+    24 0000001F 6C6120636F6E746173-     msj2 db "la contaseña es incorrecta",0
+    24 00000028 65C3B1612065732069-
+    24 00000031 6E636F727265637461-
+    24 0000003A 00                 
+    25 0000003B 6C6120636F6E747261-     msj3 db "la contraseña es correcto",0
+    25 00000044 7365C3B16120657320-
+    25 0000004D 636F72726563746F00 
+    26 00000056 6A75616E69746F3938      cad1 db "juanito98"
+    27                                  
+    28                                  segment .bss
+    29 00000000 <res 00000032>          cad2 resb 50
+    30                                  
+    31                                  segment .text 
+    32 00000000 4883EC20                sub rsp,0x20
+    33 00000004 48B9-                   	mov rcx,msj1
+    33 00000006 [0000000000000000] 
+    34 0000000E E8(00000000)            	call printf
+    35                                  	
+    36 00000013 48B9-                   	mov rcx,cad2
+    36 00000015 [0000000000000000] 
+    37 0000001D E8(00000000)            	call gets
+    38                                  	
+    39 00000022 48B9-                   	mov rcx,cad1
+    39 00000024 [5600000000000000] 
+    40 0000002C E8(00000000)            	call strlen
+    41                                  	
+    42 00000031 4883C420                add rsp,0x20
+    43 00000035 C3                      ret
+    44                                  ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    45                                  
+    46                                  
+    47 00000036 C3                      ret
